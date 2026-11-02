@@ -58,9 +58,6 @@ Die Card liest diese Zuordnung aus dem Gerät – die Entity-IDs müssen nicht e
 
 ## Installation über HACS
 
-Das Projekt ist im offiziellen HACS-Katalog verfügbar ([hacs/default #12053](https://github.com/hacs/default/pull/12053)).
-Ein benutzerdefiniertes Repository ist für die reguläre Installation nicht erforderlich.
-
 1. HACS öffnen und nach **Irrigation Control Card** suchen.
 2. Die Karte auswählen und herunterladen.
 3. Browser vollständig neu laden; in der Companion-App gegebenenfalls den Frontend-Cache zurücksetzen.
