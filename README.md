@@ -58,14 +58,8 @@ Die Card liest diese Zuordnung aus dem Gerät – die Entity-IDs müssen nicht e
 
 ## Installation über HACS
 
-**Katalogstatus (25.10.2026):** Die Aufnahme in den offiziellen HACS-Katalog ist mit
-[hacs/default #12053](https://github.com/hacs/default/pull/12053) beantragt und noch nicht abgeschlossen.
-Solange **Irrigation Control Card** nicht in der regulären HACS-Suche erscheint, bleibt die Installation
-über ein benutzerdefiniertes Repository der aktuelle Weg.
-
-### Nach Aufnahme: reguläre HACS-Suche
-
-Sobald das Projekt im offiziellen HACS-Katalog verfügbar ist, ist dies der Standardweg:
+Das Projekt ist im offiziellen HACS-Katalog verfügbar ([hacs/default #12053](https://github.com/hacs/default/pull/12053)).
+Ein benutzerdefiniertes Repository ist für die reguläre Installation nicht erforderlich.
 
 1. HACS öffnen und nach **Irrigation Control Card** suchen.
 2. Die Karte auswählen und herunterladen.
@@ -73,20 +67,10 @@ Sobald das Projekt im offiziellen HACS-Katalog verfügbar ist, ist dies der Stan
 
 [![In HACS öffnen](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=BeGiBue&repository=home-assistant-irrigation-control-card&category=plugin)
 
-### Bis zur Aufnahme: benutzerdefiniertes Repository
+### Bestehende Custom-Repository-Installation auf den HACS-Katalog umstellen
 
-1. In HACS **Benutzerdefinierte Repositories** öffnen.
-2. `https://github.com/BeGiBue/home-assistant-irrigation-control-card` hinzufügen.
-3. Als Typ **Dashboard** auswählen.
-4. **Irrigation Control Card** installieren.
-5. Browser bzw. App vollständig neu laden.
-
-### Bestehende Custom-Repository-Installation migrieren
-
-Diese Schritte erst ausführen, wenn die Karte im offiziellen Katalog verfügbar ist:
-
-1. In der regulären HACS-Suche prüfen, ob **Irrigation Control Card** verfügbar ist. Falls nicht,
-   HACS aktualisieren und den bisherigen Custom-Repository-Eintrag behalten.
+1. In der HACS-Suche prüfen, dass **Irrigation Control Card** im offiziellen Katalog verfügbar ist. Falls der
+   Eintrag noch fehlt, zuerst HACS und seine Repository-Informationen aktualisieren und mit der Umstellung warten.
 2. Unter **HACS → ⋮ → Benutzerdefinierte Repositories** nur den Eintrag für
    `BeGiBue/home-assistant-irrigation-control-card` entfernen.
 3. **Die bestehende Installation nicht deinstallieren.** Dashboard-Ressource, Karten und
@@ -99,8 +83,7 @@ Für den Katalogwechsel müssen Karten nicht neu angelegt werden. Vorhandene
 Entitätszuordnungen und Konfigurationsschlüssel bleiben erhalten. Die unten beschriebene
 Umbenennung von Kartentyp und Ressource ist ein eigener Migrationsschritt.
 Eine Major-Version bedeutet **nicht automatisch Breaking Changes**; Version 3.0.0 enthält
-jedoch bewusst die folgende notwendige Umstellung. Die Versionsnummer bestätigt keine
-bereits erfolgte Katalogaufnahme.
+jedoch bewusst die folgende notwendige Umstellung.
 
 ## Bestehende Karten auf den neuen Namen umstellen
 
@@ -138,11 +121,6 @@ Diese Schritte nach Installation der neuen Version ausführen:
    JavaScript-Datei nicht versehentlich entfernen oder ersetzen.
 6. Browser vollständig neu laden, gegebenenfalls Frontend-Cache der Companion-App leeren.
    Anschließend Darstellung, Editor und Entitätszuordnungen prüfen.
-
-Die Umbenennung kann nach Veröffentlichung unabhängig von der noch ausstehenden
-HACS-Katalogaufnahme durchgeführt werden. Das Entfernen des Custom-Repository-Eintrags
-wegen einer **Katalogaufnahme** erfolgt dagegen erst, wenn die Karte tatsächlich in der
-regulären HACS-Suche verfügbar ist.
 
 ## Card hinzufügen
 
