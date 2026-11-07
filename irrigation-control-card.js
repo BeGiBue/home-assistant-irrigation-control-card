@@ -1,11 +1,156 @@
-// Irrigation Control Card v3.0.1 – Bewässerung für Hunter Hydrawise / Hochformat / Touch / Kiosk — AGPL-3.0-only — BeGiBue
+// Irrigation Control Card v3.1.0 – Bewässerung für Hunter Hydrawise / Hochformat / Touch / Kiosk — AGPL-3.0-only — BeGiBue
 // Einzeldatei. Zonen werden über die Geräte der Hydrawise-Integration gefunden (Entity-Registry, translation_key).
 (() => {
 "use strict";
-const IRRIGATION_CONTROL_CARD_VERSION="3.0.1";
+const IRRIGATION_CONTROL_CARD_VERSION="3.1.0";
 // Eingebettetes Standardbild (Hunter MP Rotator, gespiegelt, WebP als data-URL)
 const EMBEDDED_IMAGE_URL="data:image/webp;base64,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";
-const DEF={title:"Bewässerung",subtitle:"Hunter Hydrawise",show_image:true,image_mode:"banner",image_url:"",zones:[],pump_entity:"switch.gartenpumpe",pump_title:"Gartenpumpe",
+// Language: German when Home Assistant uses German, otherwise English.
+const IRR_I18N={
+  "en": {
+    "s_general": "General",
+    "s_image": "Image",
+    "s_zones": "Zones",
+    "s_pump": "Pump",
+    "s_stats": "Statistics",
+    "s_controller": "Controller",
+    "o_banner": "Banner behind the title",
+    "o_background": "Subtle in the card background",
+    "title": "Irrigation",
+    "garden_pump": "Garden pump",
+    "pump": "Pump",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "offline": "Offline",
+    "online": "Online",
+    "starting": "Starting …",
+    "stopping": "Stopping …",
+    "watering": "Irrigating",
+    "paused": "Paused",
+    "ready": "Ready",
+    "remaining": "Remaining",
+    "running": "Watering in progress",
+    "stop": "Stop",
+    "start_manual": "Start manually",
+    "start": "Start",
+    "controller_default": "Controller default",
+    "next_cycle": "Next cycle",
+    "watered_today": "Watered today",
+    "use_today": "Used today",
+    "automatic": "Automatic",
+    "power": "Power",
+    "energy": "Energy",
+    "controller": "Controller",
+    "rain_sensor": "Rain sensor",
+    "rain": "Rain",
+    "dry": "Dry",
+    "empty": "No Hydrawise zones found. Set up the <b>Hunter Hydrawise</b> integration or select the zones in the card editor.",
+    "description": "Start and stop Hydrawise zones, show automatic mode, pump and usage values.",
+    "l_title": "Title",
+    "l_subtitle": "Subtitle",
+    "l_scale": "Size",
+    "l_show_image": "Show image",
+    "l_image_mode": "Display",
+    "l_image_url": "Custom image (URL)",
+    "l_zones": "Zones",
+    "l_durations": "Start durations (minutes)",
+    "l_show_pump": "Show pump",
+    "l_pump_entity": "Pump",
+    "l_pump_title": "Label",
+    "l_show_stats": "Show statistics",
+    "l_daily_time_entity": "Watered today",
+    "l_water_use_entity": "Water use",
+    "l_power_entity": "Power meter – power",
+    "l_energy_entity": "Power meter – energy",
+    "l_show_controller": "Show controller",
+    "l_status_entity": "Controller status",
+    "l_rain_entity": "Rain sensor",
+    "h_subtitle": "Empty = name of the Hydrawise controller.",
+    "h_scale": "Kiosk displays: 1.2 – 1.5",
+    "h_image_url": "Empty = built-in default image, e.g. /local/images/garden.jpg",
+    "h_zones": "Order as selected. Empty = all Hydrawise zones.",
+    "h_durations": "Up to 6 buttons; type your own values and confirm with Enter.",
+    "h_daily_time_entity": "Empty = automatic from the Hydrawise controller.",
+    "h_water_use_entity": "Empty = automatic, only available with a flow sensor. No entity, no display.",
+    "h_power_entity": "Optional, e.g. the pump's smart plug (W).",
+    "h_energy_entity": "Optional, e.g. the smart plug's energy meter (kWh).",
+    "h_status_entity": "Empty = automatic from the Hydrawise controller.",
+    "h_rain_entity": "Empty = automatic from the Hydrawise controller."
+  },
+  "de": {
+    "s_general": "Allgemein",
+    "s_image": "Bild",
+    "s_zones": "Zonen",
+    "s_pump": "Pumpe",
+    "s_stats": "Statistiken",
+    "s_controller": "Controller",
+    "o_banner": "Banner hinter dem Titel",
+    "o_background": "Dezent im Kartenhintergrund",
+    "title": "Bewässerung",
+    "garden_pump": "Gartenpumpe",
+    "pump": "Pumpe",
+    "today": "Heute",
+    "tomorrow": "Morgen",
+    "offline": "Offline",
+    "online": "Online",
+    "starting": "Startet …",
+    "stopping": "Stoppt …",
+    "watering": "Bewässert",
+    "paused": "Pausiert",
+    "ready": "Bereit",
+    "remaining": "Restzeit",
+    "running": "Bewässerung läuft",
+    "stop": "Stopp",
+    "start_manual": "Manuell starten",
+    "start": "Start",
+    "controller_default": "Controller-Vorgabe",
+    "next_cycle": "Nächster Zyklus",
+    "watered_today": "Heute bewässert",
+    "use_today": "Verbrauch heute",
+    "automatic": "Automatik",
+    "power": "Leistung",
+    "energy": "Energie",
+    "controller": "Controller",
+    "rain_sensor": "Regensensor",
+    "rain": "Regen",
+    "dry": "Trocken",
+    "empty": "Keine Hydrawise-Zonen gefunden. Richte die Integration <b>Hunter Hydrawise</b> ein oder wähle die Zonen im Karteneditor aus.",
+    "description": "Hydrawise-Zonen starten und stoppen, Automatik, Pumpe und Verbrauchswerte anzeigen.",
+    "l_title": "Titel",
+    "l_subtitle": "Untertitel",
+    "l_scale": "Größe",
+    "l_show_image": "Bild anzeigen",
+    "l_image_mode": "Darstellung",
+    "l_image_url": "Eigenes Bild (URL)",
+    "l_zones": "Zonen",
+    "l_durations": "Startdauern (Minuten)",
+    "l_show_pump": "Pumpe anzeigen",
+    "l_pump_entity": "Pumpe",
+    "l_pump_title": "Bezeichnung",
+    "l_show_stats": "Statistiken anzeigen",
+    "l_daily_time_entity": "Heute bewässert",
+    "l_water_use_entity": "Wasserverbrauch",
+    "l_power_entity": "Leistungsmesser – Leistung",
+    "l_energy_entity": "Leistungsmesser – Energie",
+    "l_show_controller": "Controller anzeigen",
+    "l_status_entity": "Controller-Status",
+    "l_rain_entity": "Regensensor",
+    "h_subtitle": "Leer = Name des Hydrawise-Controllers.",
+    "h_scale": "Kiosk-Displays: 1,2 – 1,5",
+    "h_image_url": "Leer = eingebettetes Standardbild, z. B. /local/images/garten.jpg",
+    "h_zones": "Reihenfolge wie ausgewählt. Leer = alle Hydrawise-Zonen.",
+    "h_durations": "Bis zu 6 Tasten; eigene Werte eintippen und mit Enter übernehmen.",
+    "h_daily_time_entity": "Leer = automatisch vom Hydrawise-Controller.",
+    "h_water_use_entity": "Leer = automatisch, nur vorhanden mit Durchflusssensor. Ohne Entität keine Anzeige.",
+    "h_power_entity": "Optional, z. B. Messsteckdose der Pumpe (W).",
+    "h_energy_entity": "Optional, z. B. Energiezähler der Messsteckdose (kWh).",
+    "h_status_entity": "Leer = automatisch vom Hydrawise-Controller.",
+    "h_rain_entity": "Leer = automatisch vom Hydrawise-Controller."
+  }
+};
+const IRRLang=(hass)=>String(hass?.locale?.language||hass?.language||globalThis.document?.querySelector?.("home-assistant")?.hass?.locale?.language||globalThis.document?.documentElement?.lang||globalThis.navigator?.language||"en").toLowerCase().startsWith("de")?"de":"en";
+const IRRT=(hass)=>IRR_I18N[IRRLang(hass)];
+const DEF={subtitle:"Hunter Hydrawise",show_image:true,image_mode:"banner",image_url:"",zones:[],pump_entity:"switch.gartenpumpe",
   durations:["5","10","15","30"],show_pump:true,show_stats:true,daily_time_entity:"",water_use_entity:"",power_entity:"",energy_entity:"",show_controller:true,status_entity:"",rain_entity:"",scale:1};
 // Rollen der Hydrawise-Entitäten je Zonen-Gerät: Domain + translation_key (siehe homeassistant/components/hydrawise)
 const ZONE_KEYS={"switch.manual_watering":"manual","switch.auto_watering":"auto","sensor.next_cycle":"next","sensor.watering_time":"remaining",
@@ -20,22 +165,16 @@ class IrrigationControlCard extends HTMLElement{
   static getConfigForm(){
     const e=(n,d,dc)=>({name:n,selector:{entity:{filter:{...(d?{domain:d}:{}),...(dc?{device_class:dc}:{})}}}}),t=n=>({name:n,selector:{text:{}}}),b=n=>({name:n,selector:{boolean:{}}}),
       sel=(n,o)=>({name:n,selector:{select:{mode:"dropdown",options:o.map(([value,label])=>({value,label}))}}}),x=(name,title,icon,schema,expanded)=>({type:"expandable",name,title,icon,flatten:true,expanded,schema});
-    const L={title:"Titel",subtitle:"Untertitel",scale:"Größe",show_image:"Bild anzeigen",image_mode:"Darstellung",image_url:"Eigenes Bild (URL)",zones:"Zonen",
-      durations:"Startdauern (Minuten)",show_pump:"Pumpe anzeigen",pump_entity:"Pumpe",pump_title:"Bezeichnung",show_stats:"Statistiken anzeigen",daily_time_entity:"Heute bewässert",
-      water_use_entity:"Wasserverbrauch",power_entity:"Leistungsmesser – Leistung",energy_entity:"Leistungsmesser – Energie",show_controller:"Controller anzeigen",status_entity:"Controller-Status",rain_entity:"Regensensor"};
-    const H={subtitle:"Leer = Name des Hydrawise-Controllers.",scale:"Kiosk-Displays: 1,2 – 1,5",image_url:"Leer = eingebettetes Standardbild, z. B. /local/images/garten.jpg",zones:"Reihenfolge wie ausgewählt. Leer = alle Hydrawise-Zonen.",
-      durations:"Bis zu 6 Tasten; eigene Werte eintippen und mit Enter übernehmen.",daily_time_entity:"Leer = automatisch vom Hydrawise-Controller.",
-      water_use_entity:"Leer = automatisch, nur vorhanden mit Durchflusssensor. Ohne Entität keine Anzeige.",power_entity:"Optional, z. B. Messsteckdose der Pumpe (W).",energy_entity:"Optional, z. B. Energiezähler der Messsteckdose (kWh).",
-      status_entity:"Leer = automatisch vom Hydrawise-Controller.",rain_entity:"Leer = automatisch vom Hydrawise-Controller."};
+    const T=IRRT();
     return{schema:[
-      x("general","Allgemein","mdi:cog-outline",[t("title"),t("subtitle"),{name:"scale",selector:{number:{min:.8,max:1.8,step:.05,mode:"slider"}}}]),
-      x("image","Bild","mdi:image-outline",[b("show_image"),sel("image_mode",[["banner","Banner hinter dem Titel"],["background","Dezent im Kartenhintergrund"]]),t("image_url")]),
-      x("zones_group","Zonen","mdi:sprinkler-variant",[{name:"zones",selector:{device:{multiple:true,filter:{integration:"hydrawise",model:"Zone"}}}},
+      x("general",T.s_general,"mdi:cog-outline",[t("title"),t("subtitle"),{name:"scale",selector:{number:{min:.8,max:1.8,step:.05,mode:"slider"}}}]),
+      x("image",T.s_image,"mdi:image-outline",[b("show_image"),sel("image_mode",[["banner",T.o_banner],["background",T.o_background]]),t("image_url")]),
+      x("zones_group",T.s_zones,"mdi:sprinkler-variant",[{name:"zones",selector:{device:{multiple:true,filter:{integration:"hydrawise",model:"Zone"}}}},
         {name:"durations",selector:{select:{multiple:true,custom_value:true,sort:true,options:["1","2","3","5","10","15","20","30","45","60","90","120"].map(v=>({value:v,label:`${v} min`}))}}}],true),
-      x("pump","Pumpe","mdi:pump",[b("show_pump"),e("pump_entity",["switch","valve","input_boolean"]),t("pump_title")]),
-      x("stats","Statistiken","mdi:chart-box-outline",[b("show_stats"),e("daily_time_entity","sensor","duration"),e("water_use_entity","sensor","water"),e("power_entity","sensor","power"),e("energy_entity","sensor","energy")]),
-      x("controller","Controller","mdi:router-wireless",[b("show_controller"),e("status_entity","binary_sensor"),e("rain_entity","binary_sensor")])],
-      computeLabel:s=>L[s.name],computeHelper:s=>H[s.name]};
+      x("pump",T.s_pump,"mdi:pump",[b("show_pump"),e("pump_entity",["switch","valve","input_boolean"]),t("pump_title")]),
+      x("stats",T.s_stats,"mdi:chart-box-outline",[b("show_stats"),e("daily_time_entity","sensor","duration"),e("water_use_entity","sensor","water"),e("power_entity","sensor","power"),e("energy_entity","sensor","energy")]),
+      x("controller",T.s_controller,"mdi:router-wireless",[b("show_controller"),e("status_entity","binary_sensor"),e("rain_entity","binary_sensor")])],
+      computeLabel:s=>T[`l_${s.name}`],computeHelper:s=>T[`h_${s.name}`]};
   }
 
   connectedCallback(){
@@ -82,7 +221,7 @@ class IrrigationControlCard extends HTMLElement{
     const ids=[this._config.pump_entity,this._config.power_entity,this._config.energy_entity,...Object.values(r.ctrl),...r.zones.flatMap(z=>Object.values(z))];
     // Anfrage erledigt, sobald der Zustand passt (oder nach 90 s aufgeben)
     for(const z of r.zones){const p=this._pending[z.id];if(p?.accepted&&(this._running(z)===(p.kind==="start")||Date.now()>p.until))delete this._pending[z.id];}
-    const sig=JSON.stringify(this._config)+ids.map(id=>{const s=this._s(id);return s?`${s.state}|${s.last_changed}`:"-";}).join("§")+JSON.stringify(this._pending)+(this._hass.language||"");
+    const sig=JSON.stringify(this._config)+ids.map(id=>{const s=this._s(id);return s?`${s.state}|${s.last_changed}`:"-";}).join("§")+JSON.stringify(this._pending)+IRRLang(this._hass);
     if(sig===this._sig)return;
     this._sig=sig;this._render();
   }
@@ -104,9 +243,9 @@ class IrrigationControlCard extends HTMLElement{
   _when(id){
     const s=this._v(id);if(!s)return{main:"—",rel:""};
     const d=new Date(s.state);if(isNaN(d))return{main:this._f(id),rel:""};
-    const loc=this._hass?.locale?.language||this._hass?.language||"de-DE",now=new Date(),day=x=>new Date(x.getFullYear(),x.getMonth(),x.getDate()).getTime();
+    const T=IRRT(this._hass),loc=this._hass?.locale?.language||this._hass?.language||"en",now=new Date(),day=x=>new Date(x.getFullYear(),x.getMonth(),x.getDate()).getTime();
     const dd=Math.round((day(d)-day(now))/86400000),time=d.toLocaleTimeString(loc,{hour:"2-digit",minute:"2-digit"});
-    const de=loc.startsWith("de"),main=dd===0?`${de?"Heute":"Today"} ${time}`:dd===1?`${de?"Morgen":"Tomorrow"} ${time}`:`${d.toLocaleDateString(loc,{weekday:"short",day:"2-digit",month:"2-digit"})} ${time}`;
+    const main=dd===0?`${T.today} ${time}`:dd===1?`${T.tomorrow} ${time}`:`${d.toLocaleDateString(loc,{weekday:"short",day:"2-digit",month:"2-digit"})} ${time}`;
     const sec=(d-now)/1000,a=Math.abs(sec),rtf=new Intl.RelativeTimeFormat(loc,{numeric:"auto",style:"short"});
     const rel=a<3600?rtf.format(Math.round(sec/60),"minute"):dd===0?rtf.format(Math.round(sec/3600),"hour"):dd===1?"":rtf.format(dd,"day");
     return{main,rel};
@@ -158,8 +297,8 @@ class IrrigationControlCard extends HTMLElement{
   _sw(on){return`<span class="sw${on?" on":""}"><i></i></span>`;}
 
   _zone(z){
-    const run=this._running(z),p=this._pending[z.id],auto=this._s(z.auto)?this._on(z.auto):true,online=this._online(z),dis=online?"":"disabled";
-    const st=!online?["error","Offline"]:p?["primary",p.kind==="start"?"Startet …":"Stoppt …"]:run?["primary","Bewässert"]:!auto?["warning","Pausiert"]:["success","Bereit"];
+    const T=IRRT(this._hass),run=this._running(z),p=this._pending[z.id],auto=this._s(z.auto)?this._on(z.auto):true,online=this._online(z),dis=online?"":"disabled";
+    const st=!online?["error",T.offline]:p?["primary",p.kind==="start"?T.starting:T.stopping]:run?["primary",T.watering]:!auto?["warning",T.paused]:["success",T.ready];
     const rem=this._remaining(z);
     if(run&&Number.isFinite(rem))this._total[z.id]=Math.max(this._total[z.id]||0,rem);else if(!run&&!p)delete this._total[z.id];
     const tot=this._total[z.id],pct=run&&Number.isFinite(rem)&&tot?Math.max(2,Math.min(100,rem/tot*100)):0;
@@ -167,43 +306,43 @@ class IrrigationControlCard extends HTMLElement{
     const row=(l,id,v,sm,tone)=>`<button class="drow${tone?` tone-${tone}`:""}" data-more="${this._e(id)}"><span>${l}</span><b>${this._e(v)}${sm?` <em>${this._e(sm)}</em>`:""}</b></button>`;
     const canStop=!!this._stopTarget(z);
     const run_box=run||p?`<div class="runbox">
-        ${this._s(z.remaining)?`<div class="rt"><span class="lbl">Restzeit</span><span class="val"><b>${Number.isFinite(rem)?rem:"—"}</b><em>min</em></span><i class="bar"><u style="width:${pct}%"></u></i></div>`:`<div class="rt"><span class="lbl">Bewässerung läuft</span></div>`}
-        <button class="stop" data-stop="${this._e(z.id)}" ${p?.kind==="stop"||!canStop?"disabled":""}><ha-icon icon="mdi:stop"></ha-icon><b>Stopp</b></button></div>`
-      :`<div class="starts"><span class="lbl">Manuell starten</span><div class="durs">${(z.running?this._durations():[]).map(m=>`<button class="dur" data-start="${this._e(z.id)}" data-min="${m}" ${dis}><b>${m}</b><em>min</em></button>`).join("")||`<button class="dur" data-start="${this._e(z.id)}" data-min="0" ${dis}><b>Start</b><em>Controller-Vorgabe</em></button>`}</div></div>`;
+        ${this._s(z.remaining)?`<div class="rt"><span class="lbl">${T.remaining}</span><span class="val"><b>${Number.isFinite(rem)?rem:"—"}</b><em>min</em></span><i class="bar"><u style="width:${pct}%"></u></i></div>`:`<div class="rt"><span class="lbl">${T.running}</span></div>`}
+        <button class="stop" data-stop="${this._e(z.id)}" ${p?.kind==="stop"||!canStop?"disabled":""}><ha-icon icon="mdi:stop"></ha-icon><b>${T.stop}</b></button></div>`
+      :`<div class="starts"><span class="lbl">${T.start_manual}</span><div class="durs">${(z.running?this._durations():[]).map(m=>`<button class="dur" data-start="${this._e(z.id)}" data-min="${m}" ${dis}><b>${m}</b><em>min</em></button>`).join("")||`<button class="dur" data-start="${this._e(z.id)}" data-min="0" ${dis}><b>${T.start}</b><em>${T.controller_default}</em></button>`}</div></div>`;
     return`<section class="panel zone tone-${st[0]}${run?" running":""}">
       <header><span class="chip"><ha-icon icon="mdi:sprinkler-variant"></ha-icon></span><h3>${this._e(z.name)}</h3><button class="pill" data-more="${this._e(z.running||z.manual)}"><i class="dot"></i><b>${this._e(st[1])}</b></button></header>
       ${run_box}
       <div class="drows">
-        ${this._s(z.next)?row("Nächster Zyklus",z.next,nx.main,nx.rel,!auto?"warning":""):""}
-        ${this._s(z.daily_time)?row("Heute bewässert",z.daily_time,this._dur(today)):""}
-        ${this._s(z.daily_use)?row("Verbrauch heute",z.daily_use,this._f(z.daily_use)):""}
-        ${this._s(z.auto)?`<button class="drow tgl" data-toggle="${this._e(z.auto)}" ${this._ok(z.auto)?"":"disabled"}><span>Automatik</span>${this._sw(auto)}</button>`:""}
+        ${this._s(z.next)?row(T.next_cycle,z.next,nx.main,nx.rel,!auto?"warning":""):""}
+        ${this._s(z.daily_time)?row(T.watered_today,z.daily_time,this._dur(today)):""}
+        ${this._s(z.daily_use)?row(T.use_today,z.daily_use,this._f(z.daily_use)):""}
+        ${this._s(z.auto)?`<button class="drow tgl" data-toggle="${this._e(z.auto)}" ${this._ok(z.auto)?"":"disabled"}><span>${T.automatic}</span>${this._sw(auto)}</button>`:""}
       </div>
     </section>`;
   }
 
   _render(){
-    const c=this._config,z=this._zones,k=this._ctrl,sc=Math.min(1.8,Math.max(.8,Number(c.scale)||1));
+    const T=IRRT(this._hass),c=this._config,z=this._zones,k=this._ctrl,sc=Math.min(1.8,Math.max(.8,Number(c.scale)||1));
     const anyRun=z.some(x=>this._running(x)),pump=this._s(c.pump_entity);
     // Statistiken über den Controller-Kacheln, jeweils eigenes Raster
     const stats=[],ctrl=[];
     if(c.show_stats!==false){
-      if(this._s(k.daily_time))stats.push(this._tile("mdi:timelapse","Heute bewässert",this._dur(this._secs(k.daily_time)),"primary",k.daily_time));
-      if(this._s(k.daily_use))stats.push(this._tile("mdi:water","Verbrauch heute",this._f(k.daily_use),"primary",k.daily_use));
+      if(this._s(k.daily_time))stats.push(this._tile("mdi:timelapse",T.watered_today,this._dur(this._secs(k.daily_time)),"primary",k.daily_time));
+      if(this._s(k.daily_use))stats.push(this._tile("mdi:water",T.use_today,this._f(k.daily_use),"primary",k.daily_use));
       // Leistungsmesser (z. B. Messsteckdose der Pumpe): aktiv, sobald Leistung anliegt
-      if(this._s(c.power_entity)){const w=Number(this._s(c.power_entity).state);stats.push(this._tile("mdi:flash","Leistung",this._f(c.power_entity),w>0?"warning":"neutral",c.power_entity));}
-      if(this._s(c.energy_entity))stats.push(this._tile("mdi:lightning-bolt-outline","Energie",this._f(c.energy_entity),"primary",c.energy_entity));
+      if(this._s(c.power_entity)){const w=Number(this._s(c.power_entity).state);stats.push(this._tile("mdi:flash",T.power,this._f(c.power_entity),w>0?"warning":"neutral",c.power_entity));}
+      if(this._s(c.energy_entity))stats.push(this._tile("mdi:lightning-bolt-outline",T.energy,this._f(c.energy_entity),"primary",c.energy_entity));
     }
     if(c.show_controller!==false){
-      if(this._s(k.status)){const on=this._on(k.status);ctrl.push(this._tile(on?"mdi:cloud-check-outline":"mdi:cloud-off-outline","Controller",on?"Online":"Offline",on?"success":"error",k.status));}
-      if(this._s(k.rain)){const wet=this._on(k.rain),ok=this._ok(k.rain);ctrl.push(this._tile(wet?"mdi:weather-pouring":"mdi:weather-sunny","Regensensor",ok?wet?"Regen":"Trocken":"—",wet?"warning":"success",k.rain));}
+      if(this._s(k.status)){const on=this._on(k.status);ctrl.push(this._tile(on?"mdi:cloud-check-outline":"mdi:cloud-off-outline",T.controller,on?T.online:T.offline,on?"success":"error",k.status));}
+      if(this._s(k.rain)){const wet=this._on(k.rain),ok=this._ok(k.rain);ctrl.push(this._tile(wet?"mdi:weather-pouring":"mdi:weather-sunny",T.rain_sensor,ok?wet?T.rain:T.dry:"—",wet?"warning":"success",k.rain));}
     }
     const img=c.show_image!==false?(c.image_url?.trim()||EMBEDDED_IMAGE_URL):"",bgm=img&&c.image_mode==="background",ban=img&&!bgm;
-    const pumpRow=pump&&c.show_pump!==false?`<button class="panel pump${this._on(c.pump_entity)?" on":""}" data-toggle="${this._e(c.pump_entity)}" ${this._ok(c.pump_entity)?"":"disabled"}><span class="chip"><ha-icon icon="mdi:pump"></ha-icon></span><b class="pt">${this._e(c.pump_title||pump.attributes?.friendly_name||"Pumpe")}</b><span class="ps">${this._e(this._f(c.pump_entity))}</span>${this._sw(this._on(c.pump_entity))}</button>`:"";
-    const empty=`<section class="panel empty"><ha-icon icon="mdi:information-outline"></ha-icon><span>Keine Hydrawise-Zonen gefunden. Richte die Integration <b>Hunter Hydrawise</b> ein oder wähle die Zonen im Karteneditor aus.</span></section>`;
+    const pumpRow=pump&&c.show_pump!==false?`<button class="panel pump${this._on(c.pump_entity)?" on":""}" data-toggle="${this._e(c.pump_entity)}" ${this._ok(c.pump_entity)?"":"disabled"}><span class="chip"><ha-icon icon="mdi:pump"></ha-icon></span><b class="pt">${this._e((c.pump_title===undefined?T.garden_pump:c.pump_title)||pump.attributes?.friendly_name||T.pump)}</b><span class="ps">${this._e(this._f(c.pump_entity))}</span>${this._sw(this._on(c.pump_entity))}</button>`:"";
+    const empty=`<section class="panel empty"><ha-icon icon="mdi:information-outline"></ha-icon><span>${T.empty}</span></section>`;
     this.shadowRoot.innerHTML=`<style>${IrrigationControlCard.css}</style><ha-card class="${bgm?"bgm":""}" style="--s:${sc}">${bgm?`<img class="bgimg pic" alt="" src="${this._e(img)}">`:""}<main>
       <section class="hero">
-        <div class="title${ban?" banner":""}">${ban?`<img class="pic" alt="" src="${this._e(img)}">`:""}<span class="chip big${anyRun?" live":""}"><ha-icon icon="mdi:sprinkler-variant"></ha-icon></span><div><h1>${this._e(c.title)}</h1><p>${this._e(c.subtitle||k.name)}</p></div></div>
+        <div class="title${ban?" banner":""}">${ban?`<img class="pic" alt="" src="${this._e(img)}">`:""}<span class="chip big${anyRun?" live":""}"><ha-icon icon="mdi:sprinkler-variant"></ha-icon></span><div><h1>${this._e(c.title??T.title)}</h1><p>${this._e(c.subtitle||k.name)}</p></div></div>
       </section>
       ${pumpRow}
       ${z.length?`<section class="zones">${z.map(x=>this._zone(x)).join("")}</section>`:empty}
@@ -325,6 +464,6 @@ class IrrigationControlCard extends HTMLElement{
 Object.freeze(IrrigationControlCard.prototype);
 if(!customElements.get("irrigation-control-card"))customElements.define("irrigation-control-card",IrrigationControlCard);
 window.customCards=window.customCards||[];
-if(!window.customCards.some(c=>c.type==="irrigation-control-card"))window.customCards.push({type:"irrigation-control-card",name:"Irrigation Control Card",description:"Hydrawise-Zonen starten und stoppen, Automatik, Pumpe und Verbrauchswerte anzeigen.",preview:true,documentationURL:"https://github.com/BeGiBue/home-assistant-irrigation-control-card"});
+if(!window.customCards.some(c=>c.type==="irrigation-control-card"))window.customCards.push({type:"irrigation-control-card",name:"Irrigation Control Card",description:IRRT().description,preview:true,documentationURL:"https://github.com/BeGiBue/home-assistant-irrigation-control-card"});
 console.info(`Irrigation Control Card v${IRRIGATION_CONTROL_CARD_VERSION}`);
 })();
