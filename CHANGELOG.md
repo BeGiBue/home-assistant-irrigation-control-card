@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.0 - 2026-11-07
+
+- The card and its editor now appear in English by default and in German when Home Assistant is set to German. / Karte und Editor erscheinen jetzt standardmäßig auf Englisch und auf Deutsch, wenn Home Assistant auf Deutsch eingestellt ist.
+- The default title and pump label follow the Home Assistant language; values already saved in a card stay unchanged. / Standardtitel und Pumpenbezeichnung folgen der Sprache von Home Assistant; bereits gespeicherte Werte bleiben unverändert.
+- README shortened and available in English and German. / README gekürzt und auf Englisch und Deutsch verfügbar.
+
 ## 3.0.1
 
 - Aufräumarbeiten ohne Funktionsänderung: interne Hilfsfunktionen für Start-/Stopp-Abschluss, Stopp-Ziel und Online-Prüfung zusammengeführt, toter Code entfernt. Konfiguration, Kartentyp (`custom:irrigation-control-card`) und Verhalten bleiben unverändert.
