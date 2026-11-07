@@ -98,6 +98,7 @@ def main():
         page.set_content("<html><body></body></html>")
         source = (ROOT / "irrigation-control-card.js").read_text()
         page.add_script_tag(content=source, type="module")
+        page.wait_for_function("() => customElements.get('irrigation-control-card')")
         results = page.evaluate(TEST_JS)
         results.append({"name": "Keine JavaScript-Fehler", "pass": not errors})
         results.append({
@@ -117,6 +118,8 @@ def main():
             else:
                 coexist.add_script_tag(content=source, type="module")
                 coexist.add_script_tag(content=OTHER_CARD, type="module")
+            # Inline-Module laufen asynchron: erst prüfen, wenn beide Karten registriert sind.
+            coexist.wait_for_function("() => customElements.get('irrigation-control-card') && customElements.get('irrigation-card')")
             prefix = "Andere Karte zuerst" if other_first else "Eigene Karte zuerst"
             coexist_checks = coexist.evaluate("""() => {
               const own = customElements.get('irrigation-control-card');
