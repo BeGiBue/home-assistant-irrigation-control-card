@@ -5,6 +5,7 @@
 - New values no longer rebuild the card: only changed texts and attributes are set. Keyboard focus, running animations (remaining-time bar, sprinkler symbol) and the loaded image stay in place, and the kiosk has less to redraw. / Neue Werte bauen die Karte nicht mehr neu auf: Es werden nur geänderte Texte und Attribute gesetzt. Tastaturfokus, laufende Animationen (Restzeit-Balken, Regner-Symbol) und das geladene Bild bleiben erhalten, und der Kiosk muss weniger neu zeichnen.
 - A custom image that cannot be loaded is remembered and replaced by the built-in image without retrying on every update; an invalid image setting no longer breaks the card. / Ein nicht ladbares eigenes Bild wird gemerkt und durch das eingebaute ersetzt, ohne bei jeder Aktualisierung neu zu laden; eine ungültige Bildeinstellung bringt die Karte nicht mehr zum Absturz.
 - The width is evaluated in the next frame (no "ResizeObserver loop" messages). / Die Breite wird im nächsten Bild ausgewertet (keine „ResizeObserver loop“-Meldungen).
+- Fixed: a renamed zone was only shown after the next value change. / Behoben: Eine umbenannte Zone erschien erst nach der nächsten Wertänderung.
 - Browser tests for updates, controls and layout added. / Browser-Tests für Aktualisierung, Bedienung und Layout ergänzt.
 
 ## 3.1.1 - 2026-11-08

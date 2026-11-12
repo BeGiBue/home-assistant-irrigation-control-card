@@ -226,7 +226,7 @@ class IrrigationControlCard extends HTMLElement{
     const b=this._w600===undefined?w>=600:(this._w600?w>=600-H:w>=600+H);
     if(b!==this._w600){this._w600=b;this.toggleAttribute("data-w600",b);}
   }
-  setConfig(c){this._config={...DEF,...c};this._sig="";this._built=false;this._update();}
+  setConfig(c){this._config={...DEF,...c};this._sig="";this._built=false;this._noImg=false;this._update();}
   set hass(h){this._hass=h;this._update();}
   get hass(){return this._hass;}
   // Höhe fest an den Inhalt gebunden: rows "auto", im Layout-Editor nicht verstellbar; nur die Breite ist frei
@@ -266,7 +266,8 @@ class IrrigationControlCard extends HTMLElement{
     const ids=[this._config.pump_entity,this._config.power_entity,this._config.energy_entity,...Object.values(r.ctrl),...r.zones.flatMap(z=>Object.values(z))];
     // Anfrage erledigt, sobald der Zustand passt (oder nach 90 s aufgeben)
     for(const z of r.zones){const p=this._pending[z.id];if(p?.accepted&&(this._running(z)===(p.kind==="start")||Date.now()>p.until))delete this._pending[z.id];}
-    const sig=JSON.stringify(this._config)+ids.map(id=>{const s=this._s(id);return s?`${s.state}|${s.last_changed}`:"-";}).join("§")+JSON.stringify(this._pending)+IRRLang(this._hass);
+    // Zonen-IDs und Namen gehören dazu: sie stehen im Markup (data-start/data-stop, Überschriften)
+    const sig=JSON.stringify(this._config)+JSON.stringify([r.ctrl.name,r.zones.map(z=>[z.id,z.name])])+ids.map(id=>{const s=this._s(id);return s?`${s.state}|${s.last_changed}`:"-";}).join("§")+JSON.stringify(this._pending)+IRRLang(this._hass);
     if(sig===this._sig)return;
     this._sig=sig;this._render();
   }

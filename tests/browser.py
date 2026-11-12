@@ -123,6 +123,26 @@ async () => {
     check('Zone kehrt zurück: beide Zonen da, Inhalt wie frisch aufgebaut', qa(f.card, '.zone h3').map(text).sort().join() === 'Beet,Rasen' && hc(f.card).innerHTML === fresh1);
   }
 
+  // --- Zonen-ID oder Name ändert sich ohne Zustandswechsel ---
+  {
+    const f = fixture();
+    f.W.devices.zone1.name = 'Vorgarten'; f.push();
+    check('umbenanntes Gerät erscheint sofort', text(q(f.card, '[data-zone="zone1"] h3')) === 'Vorgarten');
+    f.W.devices.zone9 = f.W.devices.zone1; delete f.W.devices.zone1;
+    for (const e of Object.values(f.W.entities)) if (e.device_id === 'zone1') e.device_id = 'zone9';
+    f.push();
+    q(f.card, '[data-start][data-min="10"]').click();
+    await turn();
+    check('neue Geräte-ID ohne Zustandswechsel: Start trifft weiter die angezeigte Zone', !!zone(f.card, 'zone9') && f.calls.length === 1 && f.calls[0].data.entity_id === 'binary_sensor.rasen_running' && f.calls[0].data.duration === 10);
+  }
+  {
+    const f = fixture();
+    q(f.card, '.pic').dispatchEvent(new Event('error'));
+    check('eingebautes Bild fällt aus: Darstellung ohne Bild', q(f.card, '.banner').classList.contains('noimg'));
+    f.card.setConfig({image_url: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='}); f.push();
+    check('neue Bildeinstellung wird wieder versucht', !q(f.card, '.banner').classList.contains('noimg'));
+  }
+
   // --- Bedienung ---
   {
     const f = fixture();
