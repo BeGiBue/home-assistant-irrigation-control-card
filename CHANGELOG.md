@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.2 - 2026-11-12
+
+- New values no longer rebuild the card: only changed texts and attributes are set. Keyboard focus, running animations (remaining-time bar, sprinkler symbol) and the loaded image stay in place, and the kiosk has less to redraw. / Neue Werte bauen die Karte nicht mehr neu auf: Es werden nur geänderte Texte und Attribute gesetzt. Tastaturfokus, laufende Animationen (Restzeit-Balken, Regner-Symbol) und das geladene Bild bleiben erhalten, und der Kiosk muss weniger neu zeichnen.
+- A custom image that cannot be loaded is remembered and replaced by the built-in image without retrying on every update; an invalid image setting no longer breaks the card. / Ein nicht ladbares eigenes Bild wird gemerkt und durch das eingebaute ersetzt, ohne bei jeder Aktualisierung neu zu laden; eine ungültige Bildeinstellung bringt die Karte nicht mehr zum Absturz.
+- The width is evaluated in the next frame (no "ResizeObserver loop" messages). / Die Breite wird im nächsten Bild ausgewertet (keine „ResizeObserver loop“-Meldungen).
+- Fixed: a renamed zone was only shown after the next value change. / Behoben: Eine umbenannte Zone erschien erst nach der nächsten Wertänderung.
+- Browser tests for updates, controls and layout added. / Browser-Tests für Aktualisierung, Bedienung und Layout ergänzt.
+
 ## 3.1.1 - 2026-11-08
 
 - Fixed: the card could jitter (font size and height switching back and forth quickly) when its width was close to a font step (e.g. 400 px) and the page scrollbar appeared and disappeared as a result. The font step is now chosen with ±12 px hysteresis and no longer flips on small width changes. / Behoben: Die Card konnte zappeln (Schrift und Höhe wechselten schnell hin und her), wenn ihre Breite knapp an einer Schriftstufe lag (z. B. 400 px) und die Scrollleiste der Seite dadurch ein- und ausgeblendet wurde. Die Schriftstufe wird jetzt mit ±12 px Hysterese gewählt und kippt bei kleinen Breitenänderungen nicht mehr.

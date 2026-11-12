@@ -9,7 +9,7 @@ function fixture({ running = true, manual = true, valve = true, config = {}, cal
   const classes = new Map(), calls = [];
   const ctx = vm.createContext({
     HTMLElement: class {
-      attachShadow() { this.shadowRoot = { innerHTML: '', querySelector: () => null, querySelectorAll: () => [] }; }
+      attachShadow() { this.shadowRoot = { innerHTML: '', querySelector: () => null, querySelectorAll: () => [], addEventListener() {} }; }
       dispatchEvent() {}
     },
     customElements: { get: n => classes.get(n), define: (n, c) => classes.set(n, c) },
