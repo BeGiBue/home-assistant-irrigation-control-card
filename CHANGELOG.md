@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.3 - 2026-11-20
+
+- Maintenance: test and build tools updated, no functional changes. / Wartung: Test- und Build-Werkzeuge aktualisiert, keine Änderungen an der Funktion.
+
 ## 3.1.2 - 2026-11-12
 
 - New values no longer rebuild the card: only changed texts and attributes are set. Keyboard focus, running animations (remaining-time bar, sprinkler symbol) and the loaded image stay in place, and the kiosk has less to redraw. / Neue Werte bauen die Karte nicht mehr neu auf: Es werden nur geänderte Texte und Attribute gesetzt. Tastaturfokus, laufende Animationen (Restzeit-Balken, Regner-Symbol) und das geladene Bild bleiben erhalten, und der Kiosk muss weniger neu zeichnen.
