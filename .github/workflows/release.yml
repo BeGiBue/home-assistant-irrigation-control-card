@@ -37,7 +37,7 @@ jobs:
     name: Prüfen & Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Version bestimmen
         id: v
@@ -84,7 +84,7 @@ jobs:
           node --check "$FILE"
           echo "file=$FILE" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
 
